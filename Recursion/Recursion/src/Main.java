@@ -41,9 +41,14 @@ public class Main
 
     // TrianglePattern pattern = new TrianglePattern();
     // pattern.Print(0);
-      int array[] = {34, 21, 15, 88, 90};
+      int array[] = {11,25,12,22,64};
     BubbleSort bSort = new BubbleSort();
     bSort.Sort(array);
+
+    System.out.println();
+
+    SelectionSort sSort = new SelectionSort();
+    sSort.Sort(array);
   }
 
   static void message(int a){

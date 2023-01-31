@@ -47,11 +47,52 @@ public class graph
     }
   }
 
-  public void dfs(int source){
-    
+  public void dfsUtil(int v, boolean []visited_nodes){
+    visited_nodes[v] = true;
+    System.out.print(v + " ");
+
+    Iterator<Integer> itr = adjacency[v].listIterator();
+    while(itr.hasNext()){
+      int n = itr.next();
+      if(!visited_nodes[n]){
+        dfsUtil(n, visited_nodes);
+      }
+    }
   }
 
-  public static void main(String[] args)
+  public void dfs(int source){
+    boolean visited_nodes[] = new boolean[adjacency.length];
+
+    dfsUtil(source, visited_nodes);
+  }
+
+  public void dfsUsingStack(int source){
+    Stack<Integer> stack = new Stack<>();
+    boolean visited[] = new boolean[adjacency.length];
+
+    stack.push(source);
+    // visited[source] = true;
+
+    while(stack.empty() == false){
+      int s = stack.pop();
+
+      if(visited[s] == false){
+        visited[s] = true;
+        System.out.print(s + " ");
+      }
+
+      Iterator<Integer> itr = adjacency[s].iterator();
+
+      while(itr.hasNext()){
+        int v = itr.next();
+        if(visited[v] == false){
+          stack.push(v);
+        }
+      }
+    }
+  }
+
+  public static void main(String[ ] args)
   {
     Scanner sc = new Scanner(System.in);
     System.out.print("Enter number of vertices and Edges");
@@ -68,5 +109,14 @@ public class graph
    System.out.println("Enter source for bfs traversal");
    int source = sc.nextInt();
    graph.bfs(source);
+   System.out.println();
+   System.out.println("Enter source for dfs traversal");
+   source = sc.nextInt();
+   System.out.println("DFS Traversal");
+   graph.dfs(source);
+   System.out.println();
+   System.out.println("DFS Traversal using Stack");
+   graph.dfsUsingStack(source);
+   sc.close();
   } 
 }

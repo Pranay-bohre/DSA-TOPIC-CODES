@@ -5,7 +5,7 @@ class BubbleSort {
         for(int i : result){
             System.out.print(i + " ");
         }
-    } 
+    }   
     int[] BSortv(int []arr, int end){
         int start = 0;
         if(end == 0){
